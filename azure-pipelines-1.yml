@@ -61,12 +61,6 @@ stages:
                            "version": "1.$(build.buildId)",
                            "semanticVersion": "1.$(build.buildId).0",
                            "repositoryName": "test-snow-devops-ado"
-                        },
-                        {
-                           "name": "DevOps-ADO-Maven-CI_artifact-2_",
-                           "version": "1.$(build.buildId)",
-                           "semanticVersion": "1.$(build.buildId).0",
-                           "repositoryName": "test-snow-devops-ado"
                         }
                      ],
                      "pipelineName": "$(system.teamProject)/$(build.definitionName)",
