@@ -47,35 +47,35 @@ stages:
 
   - stage: ArtifactAndPackage
     jobs:
-          - job: 'j3'
-            pool: server
-            steps:
-            - task: ServiceNow-DevOps-Server-Artifact-Registration@1
-              inputs:
-                connectedServiceName: 'empsunildevops9-TestDevOpsProject-ServiceNow DevOps Service Connection'
-                artifactRegistrationPayload: |
-                  {
-                     "artifacts": [
-                        {
-                           "name": "DevOps-ADO-Maven-CI_artifact_",
-                           "version": "1.$(build.buildId)",
-                           "semanticVersion": "1.$(build.buildId).0",
-                           "repositoryName": "test-snow-devops-ado"
-                        }
-                     ],
-                     "pipelineName": "$(system.teamProject)/$(build.definitionName)",
-                     "taskExecutionNumber": "$(build.buildId)",
-                     "stageName": "$(System.StageDisplayName)/$(system.jobDisplayName)",
-                     "branchName": "$(build.sourceBranchName)"
-                  }
-                artifactToolIdExists: false
-            - task: ServiceNow-DevOps-Server-Package-Registration@1
-              inputs:
-                connectedServiceName: 'empsunildevops9-TestDevOpsProject-ServiceNow DevOps Service Connection'
-                packageRegistrationPayload: |
-                  {
-                      "name": "pkg$(build.buildId)",
-                      "artifacts": [
+      - job: 'j3'
+        pool: server
+        steps:
+          - task: ServiceNow-DevOps-Server-Artifact-Registration@1
+            inputs:
+              connectedServiceName: 'empsunildevops9-TestDevOpsProject-ServiceNow DevOps Service Connection'
+              artifactRegistrationPayload: |
+                {
+                  "artifacts": [
+                    {
+                        "name": "DevOps-ADO-Maven-CI_artifact_",
+                        "version": "1.$(build.buildId)",
+                        "semanticVersion": "1.$(build.buildId).0",
+                        "repositoryName": "test-snow-devops-ado"
+                    }
+                  ],
+                  "pipelineName": "$(system.teamProject)/$(build.definitionName)",
+                  "taskExecutionNumber": "$(build.buildId)",
+                  "stageName": "$(System.StageDisplayName)/$(system.jobDisplayName)",
+                  "branchName": "$(build.sourceBranchName)"
+                }
+              artifactToolIdExists: false
+          - task: ServiceNow-DevOps-Server-Package-Registration@1
+            inputs:
+              connectedServiceName: 'empsunildevops9-TestDevOpsProject-ServiceNow DevOps Service Connection'
+              packageRegistrationPayload: |
+                {
+                  "name": "pkg$(build.buildId)",
+                    "artifacts": [
                       {
                           "name": "DevOps-ADO-Maven-CI_artifact_",
                           "repositoryName": "test-snow-devops-ado",
@@ -84,13 +84,14 @@ stages:
                           "taskExecutionNumber":"$(build.buildId)",
                           "stageName":"$(System.StageName)/$(system.jobDisplayName)",
                           "branchName":"$(build.sourceBranchName)"
-                      }],
-                      "pipelineName":"$(system.teamProject)/$(build.definitionName)",
-                      "taskExecutionNumber":"$(build.buildId)",
-                      "stageName":"$(System.StageName)/$(system.jobDisplayName)",
-                      "branchName":"$(build.sourceBranchName)"
-                  }
-                artifactToolIdExists: false
+                      }
+                    ],
+                    "pipelineName":"$(system.teamProject)/$(build.definitionName)",
+                    "taskExecutionNumber":"$(build.buildId)",
+                    "stageName":"$(System.StageName)/$(system.jobDisplayName)",
+                    "branchName":"$(build.sourceBranchName)"
+                }
+              artifactToolIdExists: false
   - stage: Deploy
     displayName: Deploy
     jobs:
@@ -112,6 +113,4 @@ stages:
                   "work_notes": "test work"
                 },
                 "setCloseCode": false
-                
               }
-
