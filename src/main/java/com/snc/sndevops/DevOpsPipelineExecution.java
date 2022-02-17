@@ -6,7 +6,8 @@ public class DevOpsPipelineExecution {
 		// TODO Auto-generated method stub
 		
 		System.out.println("793: Story state Updated");
-		
+		System.out.println("793: Story state Updated - test commit");
+
 	}
 
 }
